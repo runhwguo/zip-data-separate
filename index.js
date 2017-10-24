@@ -8,16 +8,19 @@ const _writeToFile = async (destinationDir, listFileIndex, listFileContent) => {
   await fs.writeFile(path.join(destinationDir, `list_${listFileIndex}.txt`), listFileContent);
 };
 
+/**
+ *
+ * @param sourceDir
+ * @param destinationDir
+ * @param maxSize        max file size to separate to zip
+ * @param extensions     file's extension
+ * @returns {Promise}
+ */
 const zipFiles = async (sourceDir, destinationDir, maxSize = 2 * 1024 * 1024 * 1024, extensions = []) => {
   return new Promise(async (resolve, reject) => {
       if (await fs.exists(sourceDir) && await fs.exists(destinationDir)) {
         let files           = await fs.readdir(sourceDir);
-        files               = files.filter(item => {
-          const con = extensions.length === 0,
-                r2  = extensions.includes(path.extname(item));
-
-          return con || r2;
-        });
+        files               = files.filter(item => extensions.length === 0 || extensions.includes(path.extname(item)));
         // console.log(files);
         let totalFileSize   = 0,
             listFileIndex   = 0,
