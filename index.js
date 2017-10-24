@@ -44,7 +44,10 @@ const zipFiles = async (sourceDir, destinationDir, maxSize = 2 * 1024 * 1024 * 1
         if (totalFileSize !== 0) {
           await _writeToFile(destinationDir, listFileIndex, listFileContent);
         }
-        console.log(`success, please follow zip-data-separate's readme step 2.`);
+        console.log(`success, please follow below operations.
+1.cd ${destinationDir}
+2.execute zip.sh
+3.wait script to execute to generate *.7z`);
       } else {
         reject(sourceDir + ' or ' + destinationDir + ' not exist');
       }
