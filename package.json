@@ -20,6 +20,9 @@
   "dependencies": {
     "mz": "^2.7.0"
   },
+  "engines": {
+    "node": ">=7.6.0"
+  },
   "bugs": {
     "url": "https://github.com/runhwguo/zip-data-separate/issues"
   },
